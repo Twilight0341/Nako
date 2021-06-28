@@ -1,0 +1,30 @@
+section#container {
+    // I have no idea how this css works but whoever came up with this is a genius
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 100%;
+
+    > div {
+        position: absolute;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        box-shadow: green 0 0 0 3px inset;
+        border: 50px solid transparent;
+    }
+
+    > video {
+        top: 0;
+        left: 0;
+        display: block;
+        position: absolute;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

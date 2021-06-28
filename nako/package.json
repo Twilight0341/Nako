@@ -1,0 +1,106 @@
+{
+  "name": "nako",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.3",
+    "@testing-library/user-event": "^12.6.2",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^12.19.15",
+    "@types/react": "^16.14.5",
+    "@types/react-dom": "^16.9.10",
+    "@types/react-select": "^4.0.15",
+    "@types/react-transition-group": "^4.4.1",
+    "axios": "^0.21.1",
+    "jsqr": "^1.3.1",
+    "rc-slider": "^9.7.2",
+    "react": "^17.0.2",
+    "react-context-global-state": "^2.1.5",
+    "react-countdown-circle-timer": "^2.5.1",
+    "react-device-detect": "^1.15.0",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.3",
+    "react-select": "^4.3.1",
+    "react-transition-group": "^4.4.1",
+    "react-use-websocket": "^2.5.0",
+    "swiper": "^6.6.2",
+    "typed-emitter": "^1.3.1",
+    "typescript": "^4.1.3",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+      "@typescript-eslint/naming-convention": [
+        "warn",
+        {
+          "selector": [
+            "interface",
+            "class"
+          ],
+          "format": [
+            "PascalCase"
+          ]
+        }
+      ],
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/ban-types": [
+        "error",
+        {
+          "extendDefaults": true,
+          "types": {
+            "{}": false
+          }
+        }
+      ],
+      "@typescript-eslint/no-empty-function": "warn",
+      "semi": "warn",
+      "camelcase": "warn",
+      "comma-spacing": "warn",
+      "prefer-const": "warn",
+      "no-multi-spaces": [
+        "warn",
+        {
+          "ignoreEOLComments": true
+        }
+      ]
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/node-sass": "^4.11.1",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/w3c-web-usb": "^1.0.4",
+    "node-sass": "^5.0.0",
+    "sass": "^1.32.12",
+    "typescript-plugin-css-modules": "^3.2.0"
+  }
+}

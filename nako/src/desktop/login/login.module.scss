@@ -1,0 +1,67 @@
+@use "../css-modules/account-management.module.scss" as accountManagement;
+
+div {
+    @include accountManagement.card(
+        #ffc928, #424242,
+        url(../login/assets/Web_1920_66.svg),    // Don't ask why I have to back
+        url(../login/assets/StudentLogo.svg)     // out a level and go back in
+    );
+
+    div#dropdown-menu {
+        > span {
+            cursor: pointer;
+        }
+
+        > div {
+            position: absolute;
+            height: fit-content;
+            overflow: hidden;
+            margin-top: 0.25em;
+
+            > div {
+                height: fit-content;
+                transform: translateY(-100%);
+
+                > span {
+                    display: block;
+                    width: 100%;
+                    padding: 0.125em 0.25em;
+                    background: #0000001f;
+                    cursor: pointer;
+    
+                    &:hover {
+                        background: #00000010;
+                    }
+                }
+            }
+        }
+    }
+}
+
+div {
+    &.reveal-enter {
+        transform: translateY(-100%) !important;
+    }
+
+    &.reveal-enter-active {
+        transform: translateY(0%) !important;
+        transition: all 250ms;
+    }
+
+    &.reveal-enter-done {
+        transform: translateY(0%) !important;
+    }
+
+    &.reveal-exit {
+        transform: translateY(0%) !important;
+    }
+
+    &.reveal-exit-active {
+        transform: translateY(-100%) !important;
+        transition: all 250ms;
+    }
+
+    &.reveal-exit-done {
+        transform: translateY(-100%) !important;
+    }
+}

@@ -1,0 +1,240 @@
+$student-primary-color: #0ee0a1;
+$student-secondary-color: #ffed00;
+$teacher-primary-color: #5283f5;
+$teacher-secondary-color: #2dd8f3;
+$tertiary-color: #a70cff;
+$lobby-elements-margin: 3em;
+$charge-up: cubic-bezier(0.4, -0.4, 0.55, 1);
+$charge-up-inverse: cubic-bezier(0.55, 0, 0.6, 1.4);
+
+button#submit {
+  color: white;
+
+  &.student {
+    background-color: $student-primary-color;
+  }
+
+  &.teacher {
+    background-color: $teacher-primary-color;
+  }
+}
+
+button#back {
+  position: absolute;
+  margin-top: 1em;
+  margin-left: 1em;
+  z-index: 3;
+  color: white;
+}
+
+input#input {
+  width: 100%;
+  font-size: 3em;
+}
+
+div.lobby-container {
+  height: 100%;
+  width: 100%;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  *:not(input) {
+    font-weight: normal;
+    color: white;
+  }
+}
+
+div {
+
+  &#background {
+    justify-content: center;
+
+    &.student {
+      background: $student-primary-color;
+    }
+
+    &.teacher {
+      background: $teacher-primary-color;
+    }
+  }
+
+  &#background-top {
+    height: 40%;
+    justify-content: flex-end;
+    
+    &.student {
+      background: $student-primary-color;
+    }
+
+    &.teacher {
+      background: $teacher-primary-color;
+    }
+  }
+
+  &.background-top-enter {
+    height: 40% !important;
+  }
+  
+  &.background-top-enter-active {
+    height: 100% !important;
+    transition: $charge-up height 500ms;
+  }
+  
+  &.background-top-enter-done {
+    height: 100% !important;
+  }
+  
+  &.background-top-exit {
+    height: 100% !important;
+  }
+  
+  &.background-top-exit-active {
+    height: 40% !important;
+    transition: $charge-up-inverse height 500ms;
+  }
+  
+  &.background-top-exit-done {
+    height: 40% !important;
+  }
+
+  &#title-container {
+    height: 30%;
+    width: fit-content;
+    margin-bottom: $lobby-elements-margin;
+  }
+  
+  &.title-container-enter {
+    transform: translateY(calc(100% + #{$lobby-elements-margin}));
+  }
+  
+  &.title-container-enter-active {
+    transform: none;
+    transition: $charge-up transform 500ms;
+  }
+  
+  &.title-container-enter-done {
+    transform: none;
+  }
+  
+  &.title-container-exit {
+    transform: none;
+  }
+  
+  &.title-container-exit-active {
+    transform: translateY(calc(100% + #{$lobby-elements-margin}));
+    transition: $charge-up-inverse transform 500ms;
+  }
+  
+  &.title-container-exit-done {
+    transform: translateY(calc(100% + #{$lobby-elements-margin}));
+  }
+  
+  &#background-bottom {
+    height: 60%;
+    overflow: hidden;
+
+
+    &.student {
+      background: $student-secondary-color;
+    }
+
+    &.teacher {
+      background: $teacher-secondary-color;
+    }
+  }
+  
+  &.background-bottom-enter {
+    height: 0% !important;
+  }
+  
+  &.background-bottom-enter-active {
+    height: 60% !important;
+    transition: $charge-up-inverse height 500ms;
+  }
+  
+  &.background-bottom-enter-done {
+    height: 60% !important;
+  }
+  
+  &.background-bottom-exit {
+    height: 60% !important;
+  }
+  
+  &.background-bottom-exit-active {
+    height: 0% !important;
+    transition: $charge-up height 500ms;
+  }
+  
+  &.background-bottom-exit-done {
+    height: 0% !important;
+  }
+
+  &#lobby-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 80%;
+  
+    > div#player-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 1.5em;
+      width: 100%;
+    }
+
+    > button {
+      background: $tertiary-color;
+    }
+  }
+  
+  &.lobby-info-container-enter {
+    opacity: 0;
+  }
+  
+  &.lobby-info-container-enter-active {
+    opacity: 1;
+    transition: opacity 500ms;
+  }
+  
+  &.lobby-info-container-enter-done {
+    opacity: 1;
+  }
+  
+  &.lobby-info-container-exit {
+    opacity: 1;
+  }
+  
+  &.lobby-info-container-exit-active {
+    opacity: 0;
+    // transition: opacity 500ms;
+  }
+  
+  &.lobby-info-container-exit-done {
+    opacity: 0;
+  }
+}
+
+form#input-container, div#input-container {
+  margin-top: $lobby-elements-margin;
+
+  > * {
+    margin-left: auto;
+  }
+
+  > *:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+
+  > span {
+    display: block;
+    font-size: 2.5em;
+  }
+}

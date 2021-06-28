@@ -1,0 +1,21 @@
+@use "../css-modules/account-management.module.scss" as accountManagement;
+
+div {
+    @include accountManagement.card(
+        #707070, #424242,
+        url(../register/assets/Web_1920_26.svg),    // Don't ask why I have to back
+        url(../register/assets/RegisterLogo.svg)    // out a level and go back in
+    );
+
+    h3#title-text {
+        color: #54e344 !important;
+    }
+
+    button#submit {
+        background-color: #54e344 !important;
+    }
+
+    div#content > div#container {
+        justify-content: flex-end !important;
+    }
+}
