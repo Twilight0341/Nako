@@ -1,0 +1,7 @@
+flask
+flask-restful
+flask_cors
+websockets
+asyncio
+qrcode
+Image
