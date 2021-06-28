@@ -1,0 +1,44 @@
+// @font-face {
+//   font-family: "roboto";
+//   src: url("./Roboto-Bold.ttf");
+// }
+
+// h1 {
+//   font-family: "Roboto";
+//   text-align: center;
+//   margin-bottom: 40px;
+// }
+
+.timer-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer {
+  font-family: roboto, "Montserrat";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 3.5rem;
+  font-weight: 800;
+}
+
+.text {
+  color: gray;
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+.value {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.info {
+  max-width: 360px;
+  margin: 40px auto 0;
+  text-align: center;
+  font-size: 16px;
+  display: none;
+}

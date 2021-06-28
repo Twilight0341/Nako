@@ -1,0 +1,141 @@
+@use "sass:color";
+
+$btn-color: #a70cff;
+
+div#result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #5283f5;
+
+    > section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-height: calc(100% - 6em);
+        width: calc(100% - 8em);
+
+        > *:not(hr) {
+            width: 80%;
+        }
+
+        > h1 {
+            padding: 0.25em 0;
+            border-radius: 0.5em;
+            color: white;
+            background-color: $btn-color;
+            text-align: center;
+        }
+
+        > hr {
+            width: 100%;
+            margin: 3em 0;
+        }
+
+        > div {
+            width: 100%;
+            height: 60vh;
+            font-size: 2em;
+            overflow: auto;
+
+            &::-webkit-scrollbar {
+                width: 15px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: rgba(77, 77, 77, 0.5);
+                border-radius: 7.5px;
+            }
+
+            > div {
+                position: relative;
+                width: 70%;
+                height: 2em;
+                margin: 0 auto 1em;
+                
+                > div {
+                    position: absolute;
+                    display: flex;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    border-radius: 28px;
+                    background: white;
+                    color: black;
+                    transition: transform 500ms ease-out;
+
+                    &#rank-header {
+                        color: white;
+                        background: color.adjust($btn-color, $blackness: 20%);
+                    }
+
+                    > span {
+                        display: inline-block;
+
+                        &:first-child {
+                            flex: 1;
+                            margin: auto 60px auto;
+                        }
+                        
+                        &:last-child {
+                            margin: auto 60px auto 0;
+                            text-align: right;
+                        }
+                    }
+                }
+                
+                &:nth-child(2) {
+                    width: 100%;
+
+                    > div {
+                        color: white;
+                        background-color: gold;
+                    }
+                    
+                    margin-bottom: 24px !important;
+                    font-size: 2em;
+                    font-weight: bold;
+                }
+
+                &:nth-child(3) {
+                    width: 90%;
+
+                    > div {
+                        color: white;
+                        background-color: silver;
+                    }
+                    
+                    margin-bottom: 24px !important;
+                    font-size: 1.75em;
+                    font-weight: bold;
+                }
+
+                &:nth-child(4) {
+                    width: 80%;
+
+                    > div {
+                        color: white;
+                        background-color: chocolate;
+                    }
+                    
+                    font-size: 1.5em;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+.slide-b2t-appear {
+    transform: translate(-50%, 100vh) !important;
+}
+
+.slide-b2t-appear-active {
+    transform: translate(-50%, -50%) !important;
+}
+
+.slide-b2t-appear-done {
+    transform: translate(-50%, -50%) !important;
+}

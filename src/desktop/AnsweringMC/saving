@@ -1,0 +1,247 @@
+import * as React from "react";
+import CSS from "csstype";
+import "./AnsweringMC.scss";
+import RoundTimer from "../RoundTimer/RoundTimer";
+import TimerBack from "./Group_818.svg";
+import NakoAPI, {
+  QuestionInfo,
+  QuestionEndRequest,
+} from "../../modules/websocket-messages";
+import CorrectSound from "./Nako Correct.wav";
+import WrongSound from "./Nako Wrong.wav";
+
+export interface Props {
+  correctAnswer?: QuestionEndRequest;
+  connection: NakoAPI;
+  questionInfo: QuestionInfo<"student">;
+  currentQuestionProps: number;
+  timing?: (fn: () => void) => void;
+}
+
+interface State {
+  imgRef: React.RefObject<HTMLImageElement>;
+  targetTimerSize: number;
+  resizeObserver: ResizeObserver;
+  userAnswer: number;
+  changeColor: number;
+}
+
+class Answering_MC extends React.Component<Props, State> {
+  static defaultProps = {
+    question: "2 x 2 = ?",
+    choices: [
+      "What time is it? dasfadsadsfasdffhjkhjkjkhjklhjg",
+      "What time is it? dasfadsadsfasdffhjkhjkjkhjklhjg",
+      "What time is it? dasfadsadsfasdffhjkhjkjkhjklhjg",
+      "What time is it? dasfadsadsfasdffhjkhjkjkhjklhjg",
+      "What time is it? dasfadsadsfasdffhjkhjkjkhjklhjg",
+      "What time is it? dasfadsadsfasdffhjkhjkjkhjklhjg",
+    ],
+    timeLimit: 120,
+    correctAnswer: 0,
+  };
+
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      imgRef: React.createRef<HTMLImageElement>(),
+      targetTimerSize: 0,
+      resizeObserver: new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.target === this.state.imgRef.current) {
+            this.setState({ targetTimerSize: entry.contentRect.height - 12 });
+          }
+        }
+      }),
+      userAnswer: 7,
+      changeColor: 0,
+    };
+  }
+
+  componentWillUnmount() {
+    this.state.resizeObserver.disconnect();
+  }
+
+  componentDidUpdate(Props: Props) {
+    if (this.state.userAnswer !== 7) {
+      console.log("changed");
+      console.log(this.props.correctAnswer?.correctAnswer);
+    }
+    if (this.props.correctAnswer?.correctAnswer !== undefined) {
+      if (this.props.correctAnswer?.correctAnswer === this.state.userAnswer) {
+        this.Play(CorrectSound);
+        console.log("Correct");
+      } else {
+        this.Play(WrongSound);
+        console.log("Wrong");
+      }
+    }
+  }
+
+  componentDidMount() {
+    //this.props.timing?.(this.WaitingForSignal);
+  }
+
+  Play = (music: string) => {
+    let audio = new Audio(music);
+    audio.play();
+  };
+
+  // correctAnswer = (e: number) => {};
+  normalAnswerStyle: CSS.Properties = {
+    width: "45%",
+    maxHeight: "50em",
+    marginTop: "3%",
+    flexShrink: 1,
+    flexGrow: 1,
+    color: "black",
+    fontSize: "1.6em",
+    textAlign: "center",
+    padding: "2%",
+    borderRadius: "50px",
+    border: "7px solid #4ed02c",
+    background: "white",
+    boxShadow:
+      "10px 10px 10px rgba(0, 0, 0, 0.45),-10px -10px 10px rgba(255, 255, 255, 0.45)",
+    transitionDuration: "0.3s",
+    outline: "none",
+  };
+
+  correctAnswerStyle: CSS.Properties = {
+    width: "45%",
+    maxHeight: "50em",
+    marginTop: "3%",
+    flexShrink: 1,
+    flexGrow: 1,
+    color: "black",
+    fontSize: "1.6em",
+    textAlign: "center",
+    padding: "2%",
+    borderRadius: "50px",
+    border: "7px solid black",
+    background: "white",
+    boxShadow:
+      "10px 10px 10px rgba(0, 0, 0, 0.45),-10px -10px 10px rgba(255, 255, 255, 0.45)",
+    transitionDuration: "0.3s",
+    outline: "none",
+  };
+
+  wrongAnswerStyle: CSS.Properties = {
+    width: "45%",
+    maxHeight: "50em",
+    marginTop: "3%",
+    flexShrink: 1,
+    flexGrow: 1,
+    color: "black",
+    fontSize: "1.6em",
+    textAlign: "center",
+    padding: "2%",
+    borderRadius: "50px",
+    border: "7px solid red",
+    background: "white",
+    boxShadow:
+      "10px 10px 10px rgba(0, 0, 0, 0.45),-10px -10px 10px rgba(255, 255, 255, 0.45)",
+    transitionDuration: "0.3s",
+    outline: "none",
+  };
+
+  render() {
+    return (
+      <div className="AnsweringMC-background-wrapper">
+        <div className="AnsweringMC-Grid-wrapper">
+          {/*The left grid*/}
+          <div className="AnsweringMC-left">
+            <div className="AnsweringMC-left-inline">
+              <div className="AnsweringMC-back-box">
+                <button className="AnsweringMC-back-button">
+                  <span className="arrow-left" />
+                  <span>Back</span>
+                </button>
+                <div className="AnsweringMC-left-flex">
+                  <p className="AnsweringMC-question-content">
+                    {this.props.questionInfo.question}
+                  </p>
+                  <div className="AnsweringMC-left-icon-box">
+                    <p className="AnsweringMC-question-icon1">Answer</p>
+                    <p className="AnsweringMC-question-icon2">Answer</p>
+                  </div>
+                  <p className="AnsweringMC-question-text">
+                    Click to choose the answer
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/*The right grid*/}
+          <div className="AnsweringMC-right">
+            <div className="AnsweringMC-right-timer-box">
+              <div
+                className="
+                 AnsweringMC-Right-timer-background-wrapper"
+              >
+                <img
+                  ref={this.state.imgRef}
+                  className="AnsweringMC-right-timer-background"
+                  src={TimerBack}
+                  alt="I am"
+                  onLoad={(e) =>
+                    this.state.resizeObserver.observe(e.currentTarget)
+                  }
+                />
+                <RoundTimer
+                  className="background-wrapper"
+                  time={this.props.questionInfo.timeLimit}
+                  timerSize={this.state.targetTimerSize - 60}
+                />
+              </div>
+              {/* <div className="AnsweringMC-Timer">
+              </div> */}
+            </div>
+            <div className="AnsweringMC-muti-wrapper">
+              {this.props.questionInfo.choices.map((value, index) => {
+                return (
+                  <button
+                    className="AnsweringsMC-button"
+                    key={index}
+                    onClick={() => {
+                      this.props.connection.send({
+                        method: "req",
+                        type: "answer_question",
+                        payload: {
+                          choice: this.state.userAnswer,
+                          currentQuestionCheck: this.props.currentQuestionProps,
+                        },
+                      });
+                      this.setState(
+                        {
+                          userAnswer: index,
+                          changeColor: this.state.changeColor + 1,
+                        },
+                        () => {
+                          console.log(this.state.userAnswer);
+                        }
+                      );
+                    }}
+                    style={
+                      this.props.correctAnswer?.correctAnswer === undefined
+                        ? this.normalAnswerStyle
+                        : this.props.correctAnswer?.correctAnswer === index
+                        ? this.correctAnswerStyle
+                        : this.wrongAnswerStyle
+                    }
+                  >
+                    {value}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+        {/* <div className="warn">content: "mobile not supported yet";</div> */}
+      </div>
+    );
+  }
+}
+
+export default Answering_MC;

@@ -1,0 +1,39 @@
+div.monster {
+    display: flex;
+    flex-direction: column;
+
+    > meter {
+        flex: 1;
+        width: 100%;
+
+        &::-webkit-meter-bar {
+            border: #606060 5px solid;
+        }
+
+        &::-webkit-meter-optimum-value {
+            background-color: #00FF3C;
+        }
+
+        &::-webkit-meter-suboptimum-value {
+            background-color: #FFFF00;
+        }
+
+        &::-webkit-meter-even-less-good-value {
+            background-color: #FF0009;
+        }
+        
+        &::-webkit-meter-optimum-value, &::-webkit-meter-suboptimum-value, &::-webkit-meter-even-less-good-value {
+            transition: width 1s ease-out, background-color 1s;
+        }
+    }
+
+    > div {
+        display: flex;
+        justify-content: center;
+        flex: 8;
+
+        > img {
+            object-fit: contain;
+        }
+    }
+}

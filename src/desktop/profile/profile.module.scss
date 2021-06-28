@@ -1,0 +1,140 @@
+$primary-color: #0ee0a1;
+$secondary-color: #ffed00;
+$tertiary-color: #a70cff;
+$non-gameplay-blocks: #646464;
+$primary-text-color: #424242;
+$secondary-text-color: white;
+
+
+div#profile-container {
+    display: flex;
+    
+    h1, h2, h3, h4, h5, h6, a, p, span {
+        color: $primary-text-color;
+    }
+
+    button {
+        color: $secondary-text-color;
+    }
+    
+    > div {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    > div:first-child {
+        flex: 1;
+        padding: 3rem 1rem;
+        background: $secondary-color;
+        
+        > #logo {
+            width: 100%;
+        }
+
+        > a {
+            padding: 0.25em 0.5em;
+            font-size: 2em;
+            margin-bottom: 2rem;
+            border-radius: 0.4em;
+        }
+
+        > a.selected {
+            color: $secondary-text-color;
+            background: $primary-text-color;
+        }
+
+        > *:first-child {
+            margin-bottom: 4rem;
+        }
+    }
+
+    > div:last-child {
+        display: flex;
+        flex: 5;
+        padding: 3rem;
+        background: $primary-color;
+
+        > div#top-bar {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            padding-bottom: calc(1em + 3em);
+    
+            > span {
+                display: inline-flex;
+                align-items: center;
+                gap: 1rem;
+                height: 100%;
+                width: fit-content;
+                font-size: 300%;
+            }
+        }
+
+        > div:not(#top-bar) {
+            flex-grow: 1;
+        }
+    }
+}
+
+div#home {
+    display: grid;
+    grid-template-columns: 1fr 1.33fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr;
+    gap: 1rem;
+
+    > div {
+        border-radius: 1em;
+        padding: 1em;
+    }
+
+    > div#event {
+        grid-column: 1 / 4;
+        grid-row: 1 ;
+        background: $secondary-color;
+
+        > button {
+            background: $tertiary-color;
+        }
+    }
+
+    > div#awards {
+        grid-column: 1;
+        grid-row: 2;
+        background: $non-gameplay-blocks;
+    }
+
+    > div#unknown {
+        grid-column: 1;
+        grid-row: 3;
+        background: $non-gameplay-blocks;
+    }
+
+    > div#social {
+        grid-column: 2;
+        grid-row: 2 / 4;
+        background: $non-gameplay-blocks;
+    }
+
+    > div#matchmaking {
+        grid-column: 3;
+        grid-row: 2 / 4;
+        display: flex;
+        background: $secondary-color;
+
+        a {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            font-size: 300%;
+        }
+    }
+}
+
+img.avatar {
+    content: url(./assets/default_profile_image.jpg);
+    display: inline-block;
+    height: 100%;
+    border-radius: 50%;
+}
